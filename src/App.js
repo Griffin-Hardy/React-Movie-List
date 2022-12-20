@@ -2,12 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header';
 import MovieScreen from './components/MovieScreen'
+import Watchlist from './components/Watchlist';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 function App() {
   const [movieList, setMovieList] = useState([])
-  const [watchList, setWatchList] = useState([])
+  const [list, setList] = useState([])
   const [page, setPage] = useState(1)
 
   const getData = () => {
@@ -22,6 +23,10 @@ function App() {
     getData()
   }, [page])
 
+  const addMovie = (movie) => {
+    setList([...list, movie])
+  }
+
   return (
     <div className="App">
       <Header/>
@@ -30,8 +35,10 @@ function App() {
         movieList={movieList}
         page={page}
         setPage={setPage}
-        watchList={watchList}
+        list={list}
+        addMovie={addMovie}
         />
+        <Watchlist list={list}/>
       </main>
     </div>
   );

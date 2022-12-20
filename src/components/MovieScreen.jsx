@@ -1,8 +1,8 @@
-import MovieCard from "./MovirCard"
+import MovieCard from "./MovieCard"
 
-const MovieScreen = ({movieList, page, setPage, list}) => {
+const MovieScreen = ({movieList, page, setPage, list, addMovie}) => {
     const movieDisplay = movieList.map((movie, index) => {
-        return <MovieCard movie={movie}/>
+        return <MovieCard movie={movie} addMovie={addMovie}/>
     })
 
     return(
