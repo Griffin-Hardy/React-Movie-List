@@ -1,15 +1,26 @@
-import MovieScreen from "./MovieScreen" 
+import MovieScreen from "./MovieScreen";
 
-const MovieCard = ({movie, addMovie}) => {
-    return(
-        <div className="movie-card">
-            <div>
-                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}/>
-                <h3>{movie.original_title}</h3>
-            </div>
-            <button onClick={() => addMovie(movie)}>Add to list</button>
-        </div>
-    )
-}
+const MovieCard = ({ movie, addMovie, removeMovie, list }) => {
+  const inWatchlist = list.filter((mov) => {
+    return mov.id === movie.id;
+  });
 
-export default MovieCard
+  const button =
+    inWatchlist.length === 0 ? (
+      <button onClick={() => addMovie(movie)}>Add to List</button>
+    ) : (
+      <button onClick={() => removeMovie(movie)}>Remove</button>
+    );
+
+  return (
+    <div className="movie-card">
+      <div>
+        <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} />
+        <h3>{movie.original_title}</h3>
+      </div>
+      {button}
+    </div>
+  );
+};
+
+export default MovieCard;
